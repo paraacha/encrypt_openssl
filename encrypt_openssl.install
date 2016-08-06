@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for the encrypt_openssl module.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function encrypt_openssl($phase) {
+  $requirements = array();
+
+  $requirements['encrypt_openssl'] = array(
+    'title' => t('Encrypt OpenSSL'),
+  );
+
+  if (extension_loaded('openssl')) {
+    $requirements['encrypt_openssl']['severity'] = REQUIREMENT_OK;
+  }
+  else {
+    $requirements['encrypt_openssl']['severity'] = REQUIREMENT_ERROR;
+    $requirements['encrypt_openssl']['description'] = t('Please install and enable the OpenSSL PHP extension.');
+  }
+
+  return $requirements;
+}

@@ -1,0 +1,7 @@
+name: Encrypt - OpenSSL Encryption
+description: "Provides an OpenSSL-based Encryption Method plugin to be used with the Encrypt module."
+core: 8.x
+type: module
+package: Encryption
+dependencies:
+  - encrypt
