@@ -60,8 +60,8 @@ class OpenSSLEncryptionTest extends WebTestBase {
       'id' => 'testing_key',
       'label' => 'Testing Key',
       'key_type' => "encryption",
-      'key_type_settings[key_size]' => '128',
-      'key_input_settings[key_value]' => Crypt::randomBytes(16),
+      'key_type_settings[key_size]' => '256',
+      'key_input_settings[key_value]' => Crypt::randomBytes(32),
       'key_provider' => 'config',
     ];
     $this->drupalPostForm(NULL, $edit, t('Save'));
@@ -74,7 +74,7 @@ class OpenSSLEncryptionTest extends WebTestBase {
 
     // Check if our plugin exists.
     $this->assertOption('edit-encryption-method', 'openssl', t('OpenSSL encryption method option is present.'));
-    $this->assertText('OpenSSL PHP extension', t('OpenSSL encryption method text is present'));
+    $this->assertText('AES (OpenSSL) + HMAC-SHA256', t('OpenSSL encryption method text is present'));
 
     $edit = [
       'encryption_method' => 'openssl',
